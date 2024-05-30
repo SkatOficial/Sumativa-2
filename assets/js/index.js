@@ -1,114 +1,70 @@
-const express = require('express');
-const app = express();
+console.log('Hola mundo');
 
-app.use(express.json());
+const obtenerAutos = async() => {
+    try {
+        
+        const response = await fetch('https://autos-rdbd.onrender.com');
+        const data =  await response.json();
 
-const autos = [
-    {
-      marca: 'Ferrari',
-      modelo: '488 GTB',
-      año: 2020,
-      transmision: 'Automática',
-      motor: '3.9L V8',
-      frenos: 'Discos de carbono cerámico',
-      velocidades: 7
-    },
-    {
-      marca: 'Lamborghini',
-      modelo: 'Huracán EVO',
-      año: 2019,
-      transmision: 'Automática',
-      motor: '5.2L V10',
-      frenos: 'Discos de carbono cerámico',
-      velocidades: 7
-    },
-    {
-      marca: 'Porsche',
-      modelo: '911 Turbo S',
-      año: 2021,
-      transmision: 'Automática',
-      motor: '3.8L H6',
-      frenos: 'Discos de carbono cerámico',
-      velocidades: 8
-    },
-    {
-      marca: 'McLaren',
-      modelo: '720S',
-      año: 2022,
-      transmision: 'Automática',
-      motor: '4.0L V8',
-      frenos: 'Discos de carbono cerámico',
-      velocidades: 7
-    },
-    {
-      marca: 'Aston Martin',
-      modelo: 'Vantage',
-      año: 2021,
-      transmision: 'Manual',
-      motor: '4.0L V8',
-      frenos: 'Discos de acero',
-      velocidades: 7
-    },
-    {
-      marca: 'Chevrolet',
-      modelo: 'Corvette C8',
-      año: 2020,
-      transmision: 'Automática',
-      motor: '6.2L V8',
-      frenos: 'Discos de acero',
-      velocidades: 8
-    },
-    {
-      marca: 'Ford',
-      modelo: 'GT',
-      año: 2019,
-      transmision: 'Automática',
-      motor: '3.5L V6',
-      frenos: 'Discos de carbono cerámico',
-      velocidades: 7
-    },
-    {
-      marca: 'Nissan',
-      modelo: 'GT-R',
-      año: 2020,
-      transmision: 'Automática',
-      motor: '3.8L V6',
-      frenos: 'Discos de carbono cerámico',
-      velocidades: 6
-    },
-    {
-      marca: 'Audi',
-      modelo: 'R8',
-      año: 2021,
-      transmision: 'Automática',
-      motor: '5.2L V10',
-      frenos: 'Discos de acero',
-      velocidades: 7
-    },
-    {
-      marca: 'Mercedes-Benz',
-      modelo: 'AMG GT',
-      año: 2020,
-      transmision: 'Automática',
-      motor: '4.0L V8',
-      frenos: 'Discos de carbono cerámico',
-      velocidades: 7
+        return data.results
+    } catch (error) {
+        console.log(`El error es: ${error}`);
     }
-];
+}
 
-app.get('/', (req , res) =>{
-    res.send('Ta funcionando');
-});
+const crearTarjeta = async( results = [] ) => {
+    let autosRow = document.getElementById('autosRow');
+    results.map((result) => {
+        
+        const { marca, modelo, año, transmision, motor, frenos, velocidades } = result;
 
-app.get('/api/autos', (req , res) =>{
-    res.send(autos);
-});
+        const divRow = document.createElement('div');
+        divRow.classList.add("col-xl-3");
+        divRow.classList.add("col-lg-3");
+        divRow.classList.add("col-md-3");
+        divRow.classList.add("col-sm-3");
+        divRow.classList.add("col-xs-3");
+        divRow.classList.add("mt-3");
+        divRow.classList.add("mb-3");
 
-app.get('/api/autos/:modelo', (req , res) =>{
-    const auto = autos.find(x => x.modelo === req.params.modelo);
-    if (!auto) return res.status(404).send('No se ha encontrado');
-    else res.send(auto);
-});
+        const card = document.createElement('div');
+        card.classList.add('card');
 
-const port = process.env.port || 80;
-app.listen(port, () => console.log(`Puerto ${port}`));
+        // const image = document.createElement('img');
+        // image.src = imagen;
+        // image.classList.add('card-img-top');
+    
+        const divBody = document.createElement('div');
+        divBody.classList.add('card-body');
+
+        const modelox = document.createElement('h5');
+        modelox.classList.add('card-tittle');
+        modelox.textContent = modelo;
+
+        const marcax = document.createElement('p');
+        marcax.classList.add('card-text');
+        marcax.textContent = marca;
+
+        const btnVer = document.createElement('button');
+        btnVer.classList.add('btn');
+        btnVer.classList.add('btn-warning');
+        btnVer.textContent = 'Ver Más';
+
+        divRow.appendChild(card);
+
+        // card.appendChild(image);
+        card.appendChild(divBody)
+
+        divBody.appendChild(modelox);
+        divBody.appendChild(marcax);
+        divBody.appendChild(btnVer);
+
+        autosRow.appendChild(divRow);
+    })
+};
+
+obtenerAutos ()
+    .then ( (data) => {
+        crearTarjeta(data);
+    })
+    .catch (error => console.log(error));
