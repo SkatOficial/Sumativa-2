@@ -12,7 +12,6 @@ export const crearTarjeta = async( results = [] ) => {
 
         const imagen = document.createElement('img');
         imagen.src = image;
-        imagen.classList.add('card-img-top');
 
         const txtModelo = document.createElement('h2');
         txtModelo.textContent = modelo;
