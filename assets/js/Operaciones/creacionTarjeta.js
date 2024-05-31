@@ -23,8 +23,6 @@ export const crearTarjetas = async( results = [] ) => {
         const intPrecio = document.createElement('p');
         intPrecio.textContent = precio;
 
-        const a = document.createElement('a');
-        
         const btnVer = document.createElement('button');
         btnVer.classList.add('boton-carta');
         btnVer.textContent = 'Ver Más';
@@ -34,16 +32,14 @@ export const crearTarjetas = async( results = [] ) => {
         infoCarta.appendChild(txtMarca);
         infoCarta.appendChild(intPrecio);
 
-        a.appendChild(btnVer)
-
         galeria.appendChild(carta);
         carta.appendChild(imagen);
         carta.appendChild(infoCarta)
-        carta.appendChild(a)
+        carta.appendChild(btnVer)
     })
 };
 
-export const crearUnaCarta = async (result) => {
+export const crearUnaTarjeta = async (result) => {
     let galeria = document.getElementById('galeriaAutos');
     const { marca, modelo, año, transmision, motor, frenos, velocidades, image, precio } = result;
 
@@ -66,8 +62,6 @@ export const crearUnaCarta = async (result) => {
 
     const intPrecio = document.createElement('p');
     intPrecio.textContent = precio;
-
-    const a = document.createElement('a');
     
     const btnVer = document.createElement('button');
     btnVer.classList.add('boton-carta');
@@ -78,10 +72,9 @@ export const crearUnaCarta = async (result) => {
     infoCarta.appendChild(txtMarca);
     infoCarta.appendChild(intPrecio);
 
-    a.appendChild(btnVer)
-
     galeria.appendChild(carta);
     carta.appendChild(imagen);
     carta.appendChild(infoCarta)
-    carta.appendChild(a)
+    carta.appendChild(btnVer)
 };
+
