@@ -6,4 +6,17 @@ export const obtenerAutos = async() => {
     } catch (error) {
         console.log(`El error es: ${error}`);
     }
-}
+};
+
+
+export const obtenerAuto = async(modelo) => {
+    try{
+        const response = await fetch(`https://autos-rdbd.onrender.com/api/autos/${modelo}`);
+        const data = await response.json();
+        return data;
+
+    }catch(error){
+        console.log(`El error es: ${error}`);
+        return [];
+    }
+};
