@@ -1,6 +1,6 @@
-import { obtenerAutos , obtenerAuto } from './Operaciones/obtenerAutos.js';
+import { obtenerAutos , obtenerAutosModelo } from './Operaciones/obtenerAutos.js';
 import { crearTarjetas } from './Operaciones/creacionTarjeta.js';
-import { buscarUnAuto } from "./Operaciones/buscarAuto.js";
+import { buscarAutos } from "./Operaciones/buscarAuto.js";
 
 obtenerAutos ()
 .then ( autos => crearTarjetas(autos))
@@ -14,9 +14,9 @@ btnBuscar.addEventListener("click" , (e) => {
     modelo = document.getElementById("inputBuscar").value;
     e.preventDefault();
     
-    obtenerAuto(modelo)
+    obtenerAutosModelo(modelo)
         .then((auto) => {            
-            buscarUnAuto(auto);
+            buscarAutos(auto);
         })
         .catch((error)=> {
             console.log(`El error es: ${error}`);

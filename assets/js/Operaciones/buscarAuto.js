@@ -1,6 +1,6 @@
-import { crearUnaTarjeta } from "./creacionTarjeta.js";
+import { crearTarjetas } from "./creacionTarjeta.js";
 
-export const buscarUnAuto = async (auto) => {
+export const buscarAutos = async (auto) => {
                     
     //Manejo de expeciones
     if(auto.length === 0){
@@ -12,5 +12,5 @@ export const buscarUnAuto = async (auto) => {
     let galeriaAutos = document.getElementById("galeriaAutos");
     galeriaAutos.innerHTML = '';
 
-    crearUnaTarjeta(auto);
+    crearTarjetas(auto);
 };
