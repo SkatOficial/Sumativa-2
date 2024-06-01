@@ -1,4 +1,4 @@
-import { obtenerAutos , obtenerAutosModelo } from '../controladores/obtenerAutos.js';
+import { obtenerAutos , obtenerAutosBusqueda} from '../controladores/obtenerAutos.js';
 import { crearTarjetas } from '../controladores/creacionTarjetas.js';
 import { validaAutos } from "../controladores/ValidaAutos.js";
 
@@ -19,12 +19,13 @@ function configurarBusqueda() {//Configura el boton de Buscar
     });
 }
 
-function manejarBusqueda() {//Maneja los posible errores que pudea tener la busqueda
-    const modelo = document.getElementById("inputBuscar").value.trim();
-
-    obtenerAutosModelo(modelo)
-        .then(auto => validaAutos(auto))
-        .catch(error => console.error(`Error al obtener autos por modelo: ${error}`));
+function manejarBusqueda() {//Maneja las acciones al apretar el boton Buscar
+    const valorBuscado = document.getElementById("inputBuscar").value.trim();
+    
+    obtenerAutosBusqueda(valorBuscado)
+        .then(autos =>validaAutos(autos)
+        )
+        .catch(error => console.error(`Error al buscar autos: ${error}`));
 }
 
 inicializacion();
