@@ -8,7 +8,6 @@ export const obtenerAutos = async() => {
     }
 };
 
-
 export const obtenerAutosModelo = async(modelo) => {
     try{
         const response = await fetch(`https://autos-rdbd.onrender.com/api/autos/${modelo}`);

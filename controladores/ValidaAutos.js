@@ -1,6 +1,6 @@
-import { crearTarjetas } from "./creacionTarjeta.js";
+import { crearTarjetas } from "./creacionTarjetas.js";
 
-export const buscarAutos = async (auto) => {
+export const validaAutos = async (auto) => {
                     
     //Manejo de expeciones
     if(auto.length === 0){
