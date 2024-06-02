@@ -1,11 +1,9 @@
-// import { obtenerAutosModelo } from "./obtenerAutos";
 import {agregarCarrito} from "./operacionBotones.js"
 
 const rutaDocumento = '../vistas/ficha1.html';
 
 
 export const crearTarjetas = ( results = [] ) => {
-    console.log("dentro de crearTarjetas",results);
     let galeria = document.getElementById('galeriaAutos');
     results.map((result) => {
         const { marca, modelo, año, transmision, motor, frenos, velocidades, image, precio } = result;

@@ -51,4 +51,5 @@ function configurarEstadoSesion(){
         btnCarrito.style.display = 'block';
     }
 }
+
 inicializacion();

@@ -94,7 +94,7 @@
         width: 100%;
     }
     .boton-agregar{
-
+        
         width: 20%;
         position: relative;
         
@@ -104,19 +104,45 @@
         border: none;
 
         font-size: x-large;
-        color: black;
-        background-color: greenyellow;
+        color: rgb(255, 255, 255);
+        background-color: rgb(180, 33, 33);
 
         transition: 0.2s ease-in-out;
-
         border-radius: 10px;
     }
     .boton-agregar:hover{
         transition: 0.2s ease-in-out;
-        background-color: green;
+        background-color: rgb(53, 198, 53);
 
         transform: scale(1.1);
     }
+    .boton-agregar a{
+        text-decoration: none;
+        color: rgb(255, 255, 255);
+    }
+
+/*---------CARTA GRANDE--------*/
+.cartaGrande{
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    text-align: left;
+
+    background-color: rgba(206, 206, 206, 0.267);
+    border-radius: 1rem;
+
+    font-family: 'Open Sans';
+    font-size: 20px;
+
+    overflow: hidden;
+}   
+.cartaGrande img{
+    width: 100%;
+    height: 50%;
+    object-fit: cover;
+    background-color: gray;
+}
+
 
 /*---------FILTRO--------*/
 .filtro{
