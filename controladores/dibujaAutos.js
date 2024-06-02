@@ -1,5 +1,9 @@
 // import { obtenerAutosModelo } from "./obtenerAutos";
 import {agregarCarrito} from "./operacionBotones.js"
+
+const rutaDocumento = '../vistas/ficha1.html';
+
+
 export const crearTarjetas = ( results = [] ) => {
     console.log("dentro de crearTarjetas",results);
     let galeria = document.getElementById('galeriaAutos');
@@ -31,7 +35,9 @@ export const crearTarjetas = ( results = [] ) => {
 
         const btnVer = document.createElement('button');
         btnVer.classList.add('boton-verMas');
-        btnVer.textContent = 'Ver Más';
+        btnVer.textContent = 'Ver detalles';
+        btnVer.addEventListener("click", () => crearTarjetaUnica (marca, modelo, año, transmision, motor, frenos, velocidades, image, precio));
+
 
         const btnAgregar = document.createElement("button");
         btnAgregar.classList.add('boton-agregar');
@@ -127,44 +133,53 @@ export const crearTarjetasCarritoCompra =( results = [] ) => {
         galeriaCarrito.appendChild(elementoCarrito);
     })
 };
-// const enviarData = (id , name , race , ki , description , image , maxKi , gender) => {
-//     const rutaArchivoHTML = '../personaje.html';
-    
-//     // Realiza una solicitud para obtener el contenido del archivo HTML
-//     fetch(rutaArchivoHTML)
-//         .then(response => response.text())
-//         .then(html => {
 
-//             // Una vez que hayas obtenido el contenido del archivo HTML, puedes manipularlo
-//             const parser = new DOMParser();
-//             const doc = parser.parseFromString(html, 'text/html');
+const crearTarjetaUnica = (marca, modelo, año, transmision, motor, frenos, velocidades, image, precio) => {
 
-//         // Modifica el contenido del archivo HTML como desees
-//         const imagePage = doc.getElementById('imagePage');
-//         imagePage.src = image;
+    // Realiza una solicitud para obtener el contenido del archivo HTML
+    fetch(rutaDocumento)
+        .then(response => response.text())
+        .then(html => {
 
-//         const namePage = doc.getElementById('name');
-//         namePage.textContent = name;
+            // Una vez que hayas obtenido el contenido del archivo HTML, puedes manipularlo
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, 'text/html');
 
-//         const racePage = doc.getElementById('race');
-//         racePage.textContent = `Raza : ${race}`;
+        // Modifica el contenido del archivo HTML como desees
+        const imagen = doc.getElementById('imagen');
+        imagen.src = image;
 
-//         const kiPage = doc.getElementById('ki');
-//         kiPage.textContent = `Ki : ${ki}`;
+        const txtModelo = doc.getElementById('Modelo');
+        txtModelo.textContent = modelo;
 
-//         const maxKiPage = doc.getElementById('maxKi');
-//         maxKiPage.textContent = `Ki Máximo : ${maxKi}`;
+        const txtMarca = doc.getElementById('Marca');
+        txtMarca.textContent = `Marca : ${marca}`;
+        
+        const txtAño = doc.getElementById('Año');
+        txtAño.textContent = `Año : ${año}`;
 
-//         const descPage = doc.getElementById('description');
-//         descPage.textContent = description;
+        const txtMotor = doc.getElementById('Motor');
+        txtMotor.textContent = `Motor : ${motor}`;
+       
+        const txtTransmision = doc.getElementById('Transmision');
+        txtTransmision.textContent = `Transmision: ${transmision}`;
+        
+        const txtVelocidades = doc.getElementById('Velocidades');
+        txtVelocidades.textContent = `Velocidades : ${velocidades}`;
+ 
+        const txtFrenos = doc.getElementById('Frenos');
+        txtFrenos.textContent = `Frenos : ${frenos}`;
 
-//      // Convierte el documento de nuevo a una cadena de texto HTML
-//      const nuevoHTML = new XMLSerializer().serializeToString(doc);
+        const txtPrecio = doc.getElementById('Precio');
+        txtPrecio.textContent = `Precio : ${precio}`;
+        
+     // Convierte el documento de nuevo a una cadena de texto HTML
+     const nuevoHTML = new XMLSerializer().serializeToString(doc);
 
-//      // Finalmente, puedes usar el nuevo HTML como desees, por ejemplo, inyectándolo en tu página actual
-//      document.body.innerHTML = nuevoHTML;
-//    })
-//    .catch(error => {
-//      console.error('Error al cargar el archivo HTML:', error);
-//    });
-// }
+     // Finalmente, puedes usar el nuevo HTML como desees, por ejemplo, inyectándolo en tu página actual
+     document.body.innerHTML = nuevoHTML;
+   })
+   .catch(error => {
+     console.error('Error al cargar el archivo HTML:', error);
+   });
+}

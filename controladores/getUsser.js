@@ -1,6 +1,8 @@
+const apiUrl = 'https://registros-skxn.onrender.com/api/registros';
+
 export const getUsser = async(usser) => {
     try {
-        const response = await fetch('https://registros-skxn.onrender.com/api/registros');
+        const response = await fetch(apiUrl);
         const data =  await response.json();
         console.log(data);
         return data
@@ -17,7 +19,6 @@ export function registro(usser, name, pass) {
         name: name
     };
 
-    const apiUrl = 'https://registros-skxn.onrender.com/api/registros';
 
     fetch(apiUrl, {
         method: 'POST',
