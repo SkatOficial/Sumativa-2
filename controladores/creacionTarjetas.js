@@ -1,3 +1,5 @@
+import {agregarCarrito} from "./operacionBotones.js"
+
 export const crearTarjetas = async( results = [] ) => {
     let galeria = document.getElementById('galeriaAutos');
     results.map((result) => {
@@ -21,20 +23,36 @@ export const crearTarjetas = async( results = [] ) => {
         txtMarca.textContent = marca;
 
         const intPrecio = document.createElement('p');
-        intPrecio.textContent = precio;
+        intPrecio.textContent = "$"+precio;
+
+        const botonesTarjetas = document.createElement('div')
+        botonesTarjetas.classList.add('contenedor-botones-carta')
 
         const btnVer = document.createElement('button');
-        btnVer.classList.add('boton-carta');
+        btnVer.classList.add('boton-verMas');
         btnVer.textContent = 'Ver Más';
+
+        const btnAgregar = document.createElement("button");
+        btnAgregar.classList.add('boton-agregar');
+        btnAgregar.textContent = "+";
+        btnAgregar.addEventListener("click",()=> {
+            agregarCarrito(result);
+        })
+
 
         infoCarta.appendChild(imagen);
         infoCarta.appendChild(txtModelo);
         infoCarta.appendChild(txtMarca);
         infoCarta.appendChild(intPrecio);
 
-        galeria.appendChild(carta);
+        botonesTarjetas.appendChild(btnVer);
+        botonesTarjetas.appendChild(btnAgregar);
+
+        
         carta.appendChild(imagen);
         carta.appendChild(infoCarta)
-        carta.appendChild(btnVer)
+        carta.appendChild(botonesTarjetas)
+
+        galeria.appendChild(carta);
     })
 };
