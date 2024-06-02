@@ -1,61 +1,107 @@
-/* Registro */
-let nombreV = "";
-let correoV = "";
-let claveV = "";
+import { registro } from '../controladores/getUsser.js';
 
-let nombreR = document.getElementById("nombreR");
-let correoR = document.getElementById("emailR");
-let claveR = document.getElementById("claveR");
+console.log("Hola mundo");
 
-let btnRegistrar = document.getElementById("btnRegistrar");
+/* Registro */ 
+let usser = "";
+let pass = "";
+let name = "";
 
-btnRegistrar .addEventListener("click", (e) => {
+let vUsser = document.getElementById('emailR');
+let vPass = document.getElementById('claveR');
+let vName = document.getElementById('nombreR');
+
+btnRegistrar.addEventListener("click", (e) => {
     e.preventDefault();
-    nombreV = nombreR.value;
-    correoV = correoR.value;
-    claveV = claveR.value;
+    usser = vUsser.value;
+    name = vName.value;
+    pass = vPass.value;
 
-    if(nombreV === ""){
+    if(name === ""){
         alert("Falta Nombre")
         return;
     };
 
-    if(correoV === ""){
+    if(usser === ""){
         alert("Falta Correo")
         return;
     };
 
-    if(claveV === ""){
+    if(pass === ""){
         alert("Falta Contraseña")
         return;
     };
 
-    console.log("Nombre "+nombreV);
-    console.log("Correo "+correoV);
-    console.log("Clave "+claveV);
+    registro(usser, name, pass); // Llamar a la función login definida en login.js
 });
 
-/* Ingreso */
-let correoI = document.getElementById("emailI");
-let claveI = document.getElementById("claveI");
 
-let btnIngresar = document.getElementById("btnIngresar");
+// /* Registro */ 
+// let nombreV = "";
+// let correoV = "";
+// let claveV = "";
 
-btnIngresar .addEventListener("click", (e) => {
-    e.preventDefault();
-    correoV = correoI.value;
-    claveV = claveI.value;
+// let nombreR = document.getElementById("nombreR");
+// let correoR = document.getElementById("emailR");
+// let claveR = document.getElementById("claveR");
 
-    if(correoV === ""){
-        alert("Falta Correo")
-        return;
-    };
+// let btnRegistrar = document.getElementById("btnRegistrar");
 
-    if(claveV === ""){
-        alert("Falta Contraseña")
-        return;
-    };
+// btnRegistrar.addEventListener("click", (e) => {
+//     e.preventDefault();
+//     nombreV = nombreR.value;
+//     correoV = correoR.value;
+//     claveV = claveR.value;
 
-    console.log("Correo "+correoV);
-    console.log("Clave "+claveV);
-});
+//     if(nombreV === ""){
+//         alert("Falta Nombre")
+//         return;
+//     };
+
+//     if(correoV === ""){
+//         alert("Falta Correo")
+//         return;
+//     };
+
+//     if(claveV === ""){
+//         alert("Falta Contraseña")
+//         return;
+//     };
+
+//     console.log("Nombre "+nombreV);
+//     console.log("Correo "+correoV);
+//     console.log("Clave "+claveV);
+// });
+
+
+
+
+
+
+
+
+// /* Ingreso */
+// let correoI = document.getElementById("emailI");
+// let claveI = document.getElementById("claveI");
+
+// let btnIngresar = document.getElementById("btnIngresar");
+
+// btnIngresar.addEventListener("click", (e) => {
+//     e.preventDefault();
+//     correoV = correoI.value;
+//     claveV = claveI.value;
+
+//     if(correoV === ""){
+//         alert("Falta Correo")
+//         return;
+//     };
+
+//     if(claveV === ""){
+//         alert("Falta Contraseña")
+//         return;
+//     };
+
+//     console.log("Correo "+correoV);
+//     console.log("Clave "+claveV);
+// });
+
