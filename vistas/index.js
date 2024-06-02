@@ -3,10 +3,24 @@ import { crearTarjetas } from '../controladores/dibujaAutos.js';
 import { validaAutos } from '../controladores/ValidaAutos.js';
 
 function inicializacion() {
-    obtenerAutos ()
-    .then ( autos => crearTarjetas(autos))
-    .catch (error => console.log(error));
+// localStorage.removeItem("carrito-compra");
+// localStorage.removeItem("galeria-autos");
 
+    if(localStorage.getItem("galeria-autos") === null || localStorage.getItem("galeria-autos").length === 0){// si el carrito no esta creado o vacio
+        obtenerAutos()
+        .then (autos => localStorage.setItem("galeria-autos",JSON.stringify(autos)))
+        .catch (error => console.log(error));
+
+        obtenerAutos()
+        .then (autos => crearTarjetas(autos))
+        .catch (error => console.log(error));
+    }else{
+        let galeriaAutos = localStorage.getItem("galeria-autos");
+        galeriaAutos = JSON.parse(galeriaAutos)
+    
+        crearTarjetas(galeriaAutos);
+    }
+    
     configurarBusqueda();
     configurarCarritoCompra();
     configurarEstadoSesion();
