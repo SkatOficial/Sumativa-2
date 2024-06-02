@@ -1,4 +1,4 @@
-import { registro } from '../controladores/getUsser.js';
+import { getUsser, registro } from '../controladores/getUsser.js';
 
 console.log("Hola mundo");
 

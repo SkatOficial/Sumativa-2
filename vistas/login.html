@@ -11,16 +11,16 @@
     <header>
         <nav class="navbar navbar-dark navbar-expand-lg nav">
             <div class="container-fluid">
-              <a href="./index.html"><img class="w-50"src="../assets/img/logo.png" alt="img-logo"></a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse " id="navbarNavDropdown">
+                <a href="./index.html"><img class="w-50"src="../assets/img/logo.png" alt="img-logo"></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse " id="navbarNavDropdown">
                 <ul class="navbar-nav justify-content-between">
                     <li class="nav-item seccion-nav">
                         <a class="formato-a" href="./index.html">Ver vehículos</a>
                         <a class="formato-a" href="">Sucursales</a>
-                        <a class="formato-a" href="">Seguros</a>
+                        <a class="formato-a"href="">Seguros</a>
                     </li>
                     <li class="nav-item seccion-nav">
                         <div class="buscador">
@@ -28,12 +28,15 @@
                             <input id="inputBuscar" type="text"></input>
                         </div>
                     </li>
-                    <li class="nav-item seccion-nav flex-row justify-content-start">
+                    <li>
+                        <button class="boton-carrito-compra" id="btnCarritoCompra"></button>
+                    </li>
+                    <li class="nav-item seccion-nav flex-row justify-content-start" id="lista-opciones-sesion">
                         <a class="boton" href="./login.html"><button> Registrarse </button></a>
                         <a class="boton" href="./login.html"><button> Iniciar sesion </button></a>
                     </li>
                 </ul>
-              </div>
+                </div>
             </div>
         </nav>
     </header>
