@@ -1,10 +1,7 @@
-<<<<<<< HEAD
-import {agregarCarrito} from "./operacionBotones.js"
-=======
 // import { obtenerAutosModelo } from "./obtenerAutos";
->>>>>>> c7a50b47740a26f3bd2d10be6293383343e8b72d
-
-export const crearTarjetas = async( results = [] ) => {
+import {agregarCarrito} from "./operacionBotones.js"
+export const crearTarjetas = ( results = [] ) => {
+    console.log("dentro de crearTarjetas",results);
     let galeria = document.getElementById('galeriaAutos');
     results.map((result) => {
         const { marca, modelo, año, transmision, motor, frenos, velocidades, image, precio } = result;
@@ -61,6 +58,75 @@ export const crearTarjetas = async( results = [] ) => {
     })
 };
 
+export const crearTarjetasCarritoCompra =( results = [] ) => {
+    console.log("dentro de crearTarjetasCarritoCompra",results);
+
+    let galeriaCarrito = document.getElementById('galeriaCarritoCompra');
+    results.map((result) => {
+        const { marca, modelo, año, transmision, motor, frenos, velocidades, image, precio } = result;
+
+        const elementoCarrito = document.createElement('div');
+        elementoCarrito.classList.add("elemento-carrito-compra","py-3");
+        
+ 
+        const imagenElemento = document.createElement('img');
+        imagenElemento.src = image;
+        imagenElemento.classList.add('imagen-carrito-compra');
+
+        const infoElementoCarrito = document.createElement('div');
+        infoElementoCarrito.classList.add('info-elemento-carrito');
+
+        const divInfoElementoCarrito= document.createElement('div');
+
+        const txtModelo = document.createElement('h2');
+        txtModelo.textContent = modelo;
+
+        const txtMarca = document.createElement('p');
+        txtMarca.classList.add("espesificaciones")
+        txtMarca.textContent = marca;
+
+        const intPrecio = document.createElement('h2');
+        intPrecio.textContent = "$"+precio;
+
+        const botonesElementoCarrito = document.createElement('div')
+        botonesElementoCarrito.classList.add('controlador-stock')
+
+        const btnStockMenos = document.createElement('button');
+        btnStockMenos.classList.add('btn-stock-flecha');
+
+        const pBtnStockMenos = document.createElement('p');
+        pBtnStockMenos.textContent = '−';
+
+        const btnStockMas = document.createElement('button');
+        btnStockMas.classList.add('btn-stock-flecha');
+
+        const pBtnStockMas = document.createElement('p');
+        pBtnStockMas.textContent = '+';
+
+        const stockCantidad = document.createElement('p');
+        stockCantidad.classList.add('stock-cantidad');
+        stockCantidad.textContent = 1; // cambiar el 1 por stock real
+
+        divInfoElementoCarrito.appendChild(txtModelo);
+        divInfoElementoCarrito.appendChild(txtMarca);
+        divInfoElementoCarrito.appendChild(intPrecio);
+
+        btnStockMenos.appendChild(pBtnStockMenos);
+        btnStockMas.appendChild(pBtnStockMas);
+
+        botonesElementoCarrito.appendChild(btnStockMenos);
+        botonesElementoCarrito.appendChild(stockCantidad);
+        botonesElementoCarrito.appendChild(btnStockMas);
+
+        infoElementoCarrito.appendChild(divInfoElementoCarrito);
+        infoElementoCarrito.appendChild(botonesElementoCarrito);
+        
+        elementoCarrito.appendChild(imagenElemento);
+        elementoCarrito.appendChild(infoElementoCarrito);
+
+        galeriaCarrito.appendChild(elementoCarrito);
+    })
+};
 // const enviarData = (id , name , race , ki , description , image , maxKi , gender) => {
 //     const rutaArchivoHTML = '../personaje.html';
     

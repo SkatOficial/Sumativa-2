@@ -1,7 +1,9 @@
 .galeria-carrito-compra{
-    display: block;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
-    
+    gap:5px;
+
     height: 100%;
 
     background: white;
@@ -10,9 +12,12 @@
 .elemento-carrito-compra{
     display: flex;
     align-items: center;
+    gap: 10px;
+    border-top: 1px solid rgb(30,30,30);
 }
     .imagen-carrito-compra{
         height: 100px;
+        border-radius: 1rem;
     }
     .info-elemento-carrito{
         display: flex;

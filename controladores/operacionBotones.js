@@ -1,3 +1,4 @@
+//REFERENTE A CARRITO DE COMPRA
 export function agregarCarrito(auto){
     let carrito = localStorage.getItem("carrito-compra")
 
@@ -5,7 +6,6 @@ export function agregarCarrito(auto){
     
     carrito.push(auto);
     
-    console.log(carrito)
-    
     localStorage.setItem("carrito-compra",JSON.stringify(carrito))
 }
+

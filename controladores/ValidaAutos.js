@@ -1,8 +1,8 @@
-import { crearTarjetas } from "./creacionTarjetas.js";
+import { crearTarjetas } from "./dibujaAutos.js";
 
-export const validaAutos = async (auto) => {
+export const validaAutos = async (autos) => {
     //Manejo de expeciones
-    if(auto.length === 0){//no se encontraron automoviles
+    if(autos.length === 0){//no se encontraron automoviles
         console.warn("no se ecnontraron automoviles")
         return
     }
@@ -11,5 +11,5 @@ export const validaAutos = async (auto) => {
     let galeriaAutos = document.getElementById("galeriaAutos");
     galeriaAutos.innerHTML = '';
 
-    crearTarjetas(auto);
+    crearTarjetas(autos);
 };
