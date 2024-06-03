@@ -1,17 +1,21 @@
-import {agregarCarrito} from "./operacionBotones.js"
+
+import {agregarAuto, eliminarAuto} from "./operacionBotones.js"
 
 const rutaDocumento = '../vistas/ficha1.html';
 
+export const crearTarjetas = async ( results = [] ) => {
 
-export const crearTarjetas = ( results = [] ) => {
     let galeria = document.getElementById('galeriaAutos');
+    if(galeria === null){
+        return
+    }
+    galeria.innerHTML = '';
     results.map((result) => {
-        const { marca, modelo, año, transmision, motor, frenos, velocidades, image, precio } = result;
+        const { marca, modelo, año, transmision, motor, frenos, velocidades, image, precio, stock} = result;
 
         const carta = document.createElement('div');
         carta.classList.add("carta");
  
-
         const infoCarta = document.createElement('div');
         infoCarta.classList.add('info-carta');
 
@@ -28,11 +32,15 @@ export const crearTarjetas = ( results = [] ) => {
         const intPrecio = document.createElement('p');
         intPrecio.textContent = "$"+precio;
 
+        const intStock = document.createElement('p');
+        intStock.textContent = "Stock: "+stock;
+
+
         const botonesTarjetas = document.createElement('div')
         botonesTarjetas.classList.add('contenedor-botones-carta')
 
         const btnVer = document.createElement('button');
-        btnVer.classList.add('boton-verMas');
+        btnVer.classList.add("boton-verMas");
         btnVer.textContent = 'Ver detalles';
         btnVer.addEventListener("click", () => crearTarjetaUnica (marca, modelo, año, transmision, motor, frenos, velocidades, image, precio));
 
@@ -41,7 +49,7 @@ export const crearTarjetas = ( results = [] ) => {
         btnAgregar.classList.add('boton-agregar');
         btnAgregar.textContent = "+";
         btnAgregar.addEventListener("click",()=> {
-            agregarCarrito(result);
+            agregarAuto(result);
         })
 
 
@@ -49,6 +57,7 @@ export const crearTarjetas = ( results = [] ) => {
         infoCarta.appendChild(txtModelo);
         infoCarta.appendChild(txtMarca);
         infoCarta.appendChild(intPrecio);
+        infoCarta.appendChild(intStock);
 
         botonesTarjetas.appendChild(btnVer);
         botonesTarjetas.appendChild(btnAgregar);
@@ -63,11 +72,13 @@ export const crearTarjetas = ( results = [] ) => {
 };
 
 export const crearTarjetasCarritoCompra =( results = [] ) => {
-    console.log("dentro de crearTarjetasCarritoCompra",results);
-
     let galeriaCarrito = document.getElementById('galeriaCarritoCompra');
+    if(galeriaCarrito === null){
+        return
+    }
+    galeriaCarrito.innerHTML = '';
     results.map((result) => {
-        const { marca, modelo, año, transmision, motor, frenos, velocidades, image, precio } = result;
+        const { marca, modelo, año, transmision, motor, frenos, velocidades, image, precio, stock } = result;
 
         const elementoCarrito = document.createElement('div');
         elementoCarrito.classList.add("elemento-carrito-compra","py-3");
@@ -97,6 +108,9 @@ export const crearTarjetasCarritoCompra =( results = [] ) => {
 
         const btnStockMenos = document.createElement('button');
         btnStockMenos.classList.add('btn-stock-flecha');
+        btnStockMenos.addEventListener("click",()=> {
+            eliminarAuto(result);
+        })
 
         const pBtnStockMenos = document.createElement('p');
         pBtnStockMenos.textContent = '−';
@@ -106,10 +120,14 @@ export const crearTarjetasCarritoCompra =( results = [] ) => {
 
         const pBtnStockMas = document.createElement('p');
         pBtnStockMas.textContent = '+';
+        pBtnStockMas.addEventListener("click",()=> {
+            agregarAuto(result);
+        })
 
         const stockCantidad = document.createElement('p');
         stockCantidad.classList.add('stock-cantidad');
-        stockCantidad.textContent = 1; // cambiar el 1 por stock real
+        stockCantidad.textContent = stock;
+        
 
         divInfoElementoCarrito.appendChild(txtModelo);
         divInfoElementoCarrito.appendChild(txtMarca);
@@ -131,19 +149,15 @@ export const crearTarjetasCarritoCompra =( results = [] ) => {
         galeriaCarrito.appendChild(elementoCarrito);
     })
 };
-
 const crearTarjetaUnica = (marca, modelo, año, transmision, motor, frenos, velocidades, image, precio) => {
 
-    // Realiza una solicitud para obtener el contenido del archivo HTML
     fetch(rutaDocumento)
         .then(response => response.text())
         .then(html => {
 
-            // Una vez que hayas obtenido el contenido del archivo HTML, puedes manipularlo
             const parser = new DOMParser();
             const doc = parser.parseFromString(html, 'text/html');
 
-        // Modifica el contenido del archivo HTML como desees
         const imagen = doc.getElementById('imagen');
         imagen.src = image;
 
@@ -152,25 +166,25 @@ const crearTarjetaUnica = (marca, modelo, año, transmision, motor, frenos, velo
 
         const txtMarca = doc.getElementById('Marca');
         txtMarca.textContent = `Marca : ${marca}`;
-        
+
         const txtAño = doc.getElementById('Año');
         txtAño.textContent = `Año : ${año}`;
 
         const txtMotor = doc.getElementById('Motor');
         txtMotor.textContent = `Motor : ${motor}`;
-       
+
         const txtTransmision = doc.getElementById('Transmision');
         txtTransmision.textContent = `Transmision: ${transmision}`;
-        
+
         const txtVelocidades = doc.getElementById('Velocidades');
         txtVelocidades.textContent = `Velocidades : ${velocidades}`;
- 
+
         const txtFrenos = doc.getElementById('Frenos');
         txtFrenos.textContent = `Frenos : ${frenos}`;
 
         const txtPrecio = doc.getElementById('Precio');
         txtPrecio.textContent = `Precio : ${precio}`;
-        
+
      // Convierte el documento de nuevo a una cadena de texto HTML
      const nuevoHTML = new XMLSerializer().serializeToString(doc);
 

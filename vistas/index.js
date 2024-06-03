@@ -3,8 +3,6 @@ import { crearTarjetas } from '../controladores/dibujaAutos.js';
 import { validaAutos } from '../controladores/ValidaAutos.js';
 
 function inicializacion() {
-// localStorage.removeItem("carrito-compra");
-// localStorage.removeItem("galeria-autos");
 
     if(localStorage.getItem("galeria-autos") === null || localStorage.getItem("galeria-autos").length === 0){// si el carrito no esta creado o vacio
         obtenerAutos()
