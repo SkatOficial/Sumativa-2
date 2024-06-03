@@ -36,72 +36,33 @@ btnRegistrar.addEventListener("click", (e) => {
 });
 
 
-// /* Registro */ 
-// let nombreV = "";
-// let correoV = "";
-// let claveV = "";
+/* Ingreso */ 
+let bName = document.getElementById("nombreR");
+let bUsser = document.getElementById("emailR");
+let bPass = document.getElementById("claveR");
 
-// let nombreR = document.getElementById("nombreR");
-// let correoR = document.getElementById("emailR");
-// let claveR = document.getElementById("claveR");
+let btnIngresar = document.getElementById("btnRegistrar");
 
-// let btnRegistrar = document.getElementById("btnRegistrar");
+btnIngresar.addEventListener("click", (e) => {
+    e.preventDefault();
+    usser = vUsser.value;
+    name = vName.value;
+    pass = vPass.value;
 
-// btnRegistrar.addEventListener("click", (e) => {
-//     e.preventDefault();
-//     nombreV = nombreR.value;
-//     correoV = correoR.value;
-//     claveV = claveR.value;
+    if(name === ""){
+        alert("Falta Nombre")
+        return;
+    };
 
-//     if(nombreV === ""){
-//         alert("Falta Nombre")
-//         return;
-//     };
+    if(usser === ""){
+        alert("Falta Correo")
+        return;
+    };
 
-//     if(correoV === ""){
-//         alert("Falta Correo")
-//         return;
-//     };
+    if(pass === ""){
+        alert("Falta Contraseña")
+        return;
+    };
 
-//     if(claveV === ""){
-//         alert("Falta Contraseña")
-//         return;
-//     };
-
-//     console.log("Nombre "+nombreV);
-//     console.log("Correo "+correoV);
-//     console.log("Clave "+claveV);
-// });
-
-
-
-
-
-
-
-
-// /* Ingreso */
-// let correoI = document.getElementById("emailI");
-// let claveI = document.getElementById("claveI");
-
-// let btnIngresar = document.getElementById("btnIngresar");
-
-// btnIngresar.addEventListener("click", (e) => {
-//     e.preventDefault();
-//     correoV = correoI.value;
-//     claveV = claveI.value;
-
-//     if(correoV === ""){
-//         alert("Falta Correo")
-//         return;
-//     };
-
-//     if(claveV === ""){
-//         alert("Falta Contraseña")
-//         return;
-//     };
-
-//     console.log("Correo "+correoV);
-//     console.log("Clave "+claveV);
-// });
-
+    registro(usser, name, pass); // Llamar a la función login definida en login.js
+});

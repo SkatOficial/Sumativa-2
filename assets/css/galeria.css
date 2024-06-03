@@ -105,14 +105,14 @@
 
         font-size: x-large;
         color: rgb(255, 255, 255);
-        background-color: greenyellow;
+        background-color: rgb(180, 33, 33);
 
         transition: 0.2s ease-in-out;
         border-radius: 10px;
     }
     .boton-agregar:hover{
         transition: 0.2s ease-in-out;
-        background-color: green;
+        background-color: rgb(53, 198, 53);
 
         transform: scale(1.1);
     }
@@ -120,7 +120,26 @@
         text-decoration: none;
         color: rgb(255, 255, 255);
     }
+.boton-filtrar{
+    padding: 10px 20px;
+    background-color: rgb(0, 152, 0);
+    border-radius: 1rem;
+    color: white;
+    
+    justify-self: center;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    transition: 1s;
+}
+    .boton-filtrar:hover{
+        background-color: rgb(0, 195, 0);
+        transition: 1s;
+        padding: 10px 40px;
 
+
+
+    }
 /*---------CARTA GRANDE--------*/
 .cartaGrande{
     display: flex;
