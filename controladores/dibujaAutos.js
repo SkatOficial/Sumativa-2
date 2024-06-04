@@ -1,8 +1,6 @@
 
 import {agregarAuto, eliminarAuto} from "./operacionBotones.js"
 
-const rutaDocumento = '../vistas/ficha1.html';
-
 export const crearTarjetas = async ( results = [] ) => {
 
     let galeria = document.getElementById('galeriaAutos');
@@ -149,12 +147,13 @@ export const crearTarjetasCarritoCompra =( results = [] ) => {
         galeriaCarrito.appendChild(elementoCarrito);
     })
 };
+
 const crearTarjetaUnica = (marca, modelo, año, transmision, motor, frenos, velocidades, image, precio) => {
+    const rutaDocumento = '../vistas/ficha1.html';
 
     fetch(rutaDocumento)
         .then(response => response.text())
         .then(html => {
-
             const parser = new DOMParser();
             const doc = parser.parseFromString(html, 'text/html');
 
@@ -184,12 +183,10 @@ const crearTarjetaUnica = (marca, modelo, año, transmision, motor, frenos, velo
 
         const txtPrecio = doc.getElementById('Precio');
         txtPrecio.textContent = `Precio : ${precio}`;
-
-     // Convierte el documento de nuevo a una cadena de texto HTML
-     const nuevoHTML = new XMLSerializer().serializeToString(doc);
-
-     // Finalmente, puedes usar el nuevo HTML como desees, por ejemplo, inyectándolo en tu página actual
-     document.body.innerHTML = nuevoHTML;
+        
+        const nuevoHTML = new XMLSerializer().serializeToString(doc);
+        
+        document.body.innerHTML = nuevoHTML;
    })
    .catch(error => {
      console.error('Error al cargar el archivo HTML:', error);

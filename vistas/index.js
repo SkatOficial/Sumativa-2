@@ -22,6 +22,7 @@ function inicializacion() {
     configurarBusqueda();
     configurarCarritoCompra();
     configurarEstadoSesion();
+    configurarBotonCerrarSesion();
 };
 
 function configurarBusqueda() {//Configura el boton de Buscar
@@ -54,13 +55,31 @@ function manejarCarritoCompra(){
 }
 
 function configurarEstadoSesion(){
-    const btnCarrito = document.getElementById("btnCarritoCompra");
-    const sesionAbierta = localStorage.getItem("sesionAbierta");
+    const listaSesion = document.getElementById("lista-opciones-sesion");
+    const btnCerrarSession = document.getElementById("btnCerrarSession");
+
+    const sesionAbierta = JSON.parse(localStorage.getItem("sesionAbierta"));
+    console.log(sesionAbierta)
 
     if(sesionAbierta){    
-        btnCarrito.style.display = 'block';
+        listaSesion.style.display = 'none';
+        btnCerrarSession.style.display = 'block';
     }else{
-        btnCarrito.style.display = 'block';
+
+        listaSesion.style.display = 'block';
+        btnCerrarSession.style.display = 'none';
+
     }
 }
+
+function configurarBotonCerrarSesion() {
+    const btnCerrarSession = document.getElementById("btnCerrarSession");
+
+    btnCerrarSession.addEventListener("click", (e) => {
+        e.preventDefault();
+        localStorage.setItem("sesionAbierta",JSON.stringify(false));
+        configurarEstadoSesion();
+    });
+}
+
 inicializacion();

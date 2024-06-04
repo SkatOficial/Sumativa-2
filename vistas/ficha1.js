@@ -1,11 +1,24 @@
-import { crearTarjetasCarritoCompra } from '../controladores/dibujaAutos.js';
+import { obtenerAutos , obtenerAutosBusqueda} from '../controladores/obtenerAutos.js';
+import { crearTarjetas } from '../controladores/dibujaAutos.js';
+import { validaAutos } from '../controladores/ValidaAutos.js';
 
 function inicializacion() {
-    const galeriaCarrito = localStorage.getItem("carrito-compra");
-    crearTarjetasCarritoCompra(JSON.parse(galeriaCarrito));
-
-    configurarEstadoSesion()
+    configurarCarritoCompra();
+    configurarEstadoSesion();
     configurarBotonCerrarSesion();
+};
+
+
+function configurarCarritoCompra() {
+    const btnCarrito = document.getElementById("btnCarritoCompra");
+
+    btnCarrito.addEventListener("click", (e) => {
+        e.preventDefault();
+        manejarCarritoCompra();
+    });
+}
+function manejarCarritoCompra(){
+    window.location.href = 'carrito-compra.html'
 }
 
 function configurarEstadoSesion(){
@@ -25,6 +38,7 @@ function configurarEstadoSesion(){
 
     }
 }
+
 function configurarBotonCerrarSesion() {
     const btnCerrarSession = document.getElementById("btnCerrarSession");
 

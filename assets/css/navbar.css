@@ -115,6 +115,9 @@
         transition: 0.2s ease-out;
         transform: scale(1.1);
     }
+#btnCerrarSession{
+    display: none;
+}
 @media only screen and (max-width: 991px) {
     .seccion-nav{
         flex-direction: column-reverse;
